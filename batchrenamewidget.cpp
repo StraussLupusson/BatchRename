@@ -90,10 +90,15 @@ void BatchRenameWidget::initUI()
     connect(ui->radioButton_replace,&QRadioButton::clicked,ui->stackedWidget_Renamesetting, [&]{
         ui->stackedWidget_Renamesetting->setCurrentIndex(1);
          ui->checkBox_isaddnum->setEnabled(true);
+
+         ui->checkBox_isaddnum->setChecked(false);
+
     });
     connect(ui->radioButton_insert,&QRadioButton::clicked,ui->stackedWidget_Renamesetting, [&]{
         ui->stackedWidget_Renamesetting->setCurrentIndex(2);
          ui->checkBox_isaddnum->setEnabled(true);
+         ui->checkBox_isaddnum->setChecked(false);
+
     });
     connect(ui->checkBox_isaddnum,&QCheckBox::stateChanged, this, [&]{
         ui->groupBox_NumSetting->setEnabled(ui->checkBox_isaddnum->isChecked());
@@ -242,6 +247,11 @@ void BatchRenameWidget::on_pushButton_clearFile_clicked()
     m_FilesModel->clear();
     m_FileLists.clear();
     ui->stackedWidget_selectFile->setCurrentIndex(0);
+
+    ui->pushButton_clearFile->setEnabled(false);
+    ui->pushButton_start->setEnabled(false);
+     ui->pushButton_addFile->setEnabled(true);
+
 }
 
 void BatchRenameWidget::on_pushButton_clearSuccessFiles_clicked()
